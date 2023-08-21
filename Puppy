@@ -1,0 +1,48 @@
+_G.CollectDrop = true
+_G.DepositDrops = true
+_G.BuyDropper = true
+_G.ClaimFreeDropper = true
+
+spawn(function()
+  while _G.CollectDrop == true do
+    local args = {
+      [1] = "CollectDrop",
+      [2] = {
+        [1] = 1,
+        [2] = 1
+      }
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("NetworkEvents"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+    wait() 
+  end
+end)
+
+spawn(function()
+  while _G.DepositDrops == true do
+    local args = {
+      [1] = "DepositDrops"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("NetworkEvents"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+    wait()
+  end
+end)
+
+spawn(function()
+  while _G.BuyDropper == true do
+    local args = {
+      [1] = "BuyDropper"
+    }
+    game:GetService("ReplicatedStorage"):WaitForChild("NetworkEvents"):WaitForChild("RemoteFunction"):InvokeServer(unpack(args))
+    wait()
+  end
+end) 
+
+spawn (function() 
+  while _G.ClaimFreeDropper == true do
+   local args = {
+    [1] = "ClaimFreeDropper"
+   }
+   game:GetService("ReplicatedStorage"):WaitForChild("NetworkEvents"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+  wait()
+  end
+end) 
